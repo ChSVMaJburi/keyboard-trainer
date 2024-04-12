@@ -29,9 +29,9 @@ class TypingTrainerGUI:
 
     def display_statistics(self):
         """Отобразить статистику ошибок и скорости печати."""
-        TextManager(f"Current speed: {self.cur_stats.get_typing_speed()}", 30, my_space.YELLOW).print_to_gui((25, 600))
+        TextManager(f"Current Cpm: {self.cur_stats.get_typing_speed()}", 30, my_space.YELLOW).print_to_gui((25, 600))
         TextManager(f"Current errors: {self.cur_stats.get_error_rate()}", 30, my_space.YELLOW).print_to_gui((25, 635))
-        TextManager(f"All time speed: {self.all_time_stats.get_typing_speed()}", 30, my_space.YELLOW).print_to_gui(
+        TextManager(f"All time Cpm: {self.all_time_stats.get_typing_speed()}", 30, my_space.YELLOW).print_to_gui(
             (600, 600))
         TextManager(f"All time errors: {self.all_time_stats.get_error_rate()}", 30, my_space.YELLOW).print_to_gui(
             (600, 635))

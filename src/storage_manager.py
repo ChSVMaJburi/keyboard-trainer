@@ -10,8 +10,8 @@ class StorageManager:
     def save_statistics(self, time: float = 0, correct: int = 0, errors: int = 0):
         """Сохранить статистику в файл."""
         with open(self.path, "w", encoding="utf-8") as file:
-            file.write(str(time))
-            file.write(str(correct))
+            file.write(str(time) + '\n')
+            file.write(str(correct) + '\n')
             file.write(str(errors))
 
     def load_statistics(self) -> Tuple[float, int, int]:

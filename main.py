@@ -48,22 +48,25 @@ if __name__ == "__main__":
     init_pygame()
     display_the_start_screen()
     aminov = TypingTrainerGUI()
+    game_over = False
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if game_over:
+                continue
             aminov.input_symbol(event)
             aminov.display_text()
-            my_space.screen.fill(my_space.GREY, pygame.Rect(230, 600, 300, 200))
-            my_space.screen.fill(my_space.GREY, pygame.Rect(810, 600, 300, 200))
+            my_space.screen.fill(my_space.GREY, pygame.Rect(50, 600, 1000, 200))
             aminov.display_statistics()
             if len(aminov.need_text.text) == aminov.correct_index:
-                my_space.screen.fill(my_space.GREY, pygame.Rect(220, 70, 300, 200))
-                TextManager("Game Over", my_space.FONT_SIZE, my_space.YELLOW).print_to_gui((220, 70))
-                StorageManager("statisttic.txt").save_statistics(aminov.all_time_stats.time,
+                my_space.screen.fill(my_space.GREY, pygame.Rect(220, 70, 600, 170))
+                TextManager("Game Over", my_space.FONT_SIZE * 2, my_space.YELLOW).print_to_gui((200, 50))
+                StorageManager("statistic.txt").save_statistics(aminov.all_time_stats.time,
                                                                  aminov.all_time_stats.correct,
                                                                  aminov.all_time_stats.errors)
+                game_over = True
                 break
         pygame.display.update()

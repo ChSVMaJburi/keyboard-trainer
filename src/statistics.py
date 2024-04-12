@@ -19,7 +19,7 @@ class TypingStatistics:
         """Выдать скорость печати."""
         if self.time == 0:
             return 0
-        return self.correct * my_space.SECS_PER_MINUTE / self.time
+        return round(self.correct * my_space.SECS_PER_MINUTE / self.time, 2)
 
     def get_error_rate(self) -> float:
         """Выдаёт количество ошибок"""
