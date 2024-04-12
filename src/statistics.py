@@ -1,5 +1,5 @@
 """Модуль с классом хранящим статистику"""
-import global_variables as my_space
+import src.global_variables as my_space
 
 
 class TypingStatistics:
@@ -17,7 +17,9 @@ class TypingStatistics:
 
     def get_typing_speed(self) -> float:
         """Выдать скорость печати."""
-        return self.correct / self.time * my_space.SECS_PER_MINUTE
+        if self.time == 0:
+            return 0
+        return self.correct * my_space.SECS_PER_MINUTE / self.time
 
     def get_error_rate(self) -> float:
         """Выдаёт количество ошибок"""

@@ -12,12 +12,12 @@ LIGHT_GRAY = (192, 192, 192)
 BUTTON_MARGIN = -10
 TEXT_MARGIN = 0
 YELLOW = (255, 255, 100)
+GREEN = (0, 255, 0)
 
 RECTANGLE = (550, 332, 154, 72)
 
 screen: pygame.surface.Surface
 FONT_SIZE = 50
-GAME_OVER: pygame.font.Font
-FONT: pygame.font.Font
+FONT = 50
 
 SECS_PER_MINUTE = 60

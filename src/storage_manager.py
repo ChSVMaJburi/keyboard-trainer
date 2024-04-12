@@ -3,6 +3,7 @@ from typing import Tuple
 
 
 class StorageManager:
+    """Класс для сохранения и загрузки статистики"""
     def __init__(self, file_path: str):
         self.path = file_path
 

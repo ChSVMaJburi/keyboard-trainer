@@ -1,25 +1,58 @@
 """Реализация класса для отображения графического интерфейса"""
+import sys
 from typing import Tuple, List
 
 import pygame
 import src.global_variables as my_space
+from src.statistics import TypingStatistics
+from src.storage_manager import StorageManager
+from src.text_manager import TextManager
+from src.text_loader import TextLoader
+from datetime import time, datetime
 
 
 class TypingTrainerGUI:
     def __init__(self):
-        pass
+        self.need_text = TextManager(TextLoader("./texts").load_random_text(), 25, my_space.WHITE)
+        self.cur_text = TextManager("", 25, my_space.GREEN)
+        self.all_time_stats = TypingStatistics(*StorageManager("./statistic.txt").load_statistics())
+        self.cur_stats = TypingStatistics(0, 0, 0)
+        self.time = datetime.now()
+        self.correct_index = 0
 
-    def display_text(self, text: str):
-        """Отобразить текст для набора."""
-        pass
+    def display_text(self) -> None:
+        """Отобразить текущий текст в графический интерфейс"""
+        TextManager("Text:", 30, my_space.RED).print_to_gui((20, 200))
+        self.need_text.print_to_gui((20, 250))
+        TextManager("Your text:", 30, my_space.RED).print_to_gui((20, 300))
+        self.cur_text.print_to_gui((20, 350))
 
-    def update_statistics(self, errors: int, typing_speed: float):
-        """Обновить статистику ошибок и скорости печати."""
-        pass
+    def display_statistics(self):
+        """Отобразить статистику ошибок и скорости печати."""
+        TextManager(f"Current speed: {self.cur_stats.get_typing_speed()}", 30, my_space.YELLOW).print_to_gui((25, 600))
+        TextManager(f"Current errors: {self.cur_stats.get_error_rate()}", 30, my_space.YELLOW).print_to_gui((25, 635))
+        TextManager(f"All time speed: {self.all_time_stats.get_typing_speed()}", 30, my_space.YELLOW).print_to_gui(
+            (600, 600))
+        TextManager(f"All time errors: {self.all_time_stats.get_error_rate()}", 30, my_space.YELLOW).print_to_gui(
+            (600, 635))
 
-    def block_invalid_characters(self, invalid_characters: List[str]):
-        """Блокировать неправильные символы в поле ввода."""
-        pass
+    def input_symbol(self, event: pygame.event.Event) -> bool:
+        """Попытка ввести символ"""
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        if event.type != pygame.KEYDOWN or event.key in (pygame.K_BACKSPACE, pygame.K_LSHIFT, pygame.K_RSHIFT):
+            return False
+        if event.unicode == self.need_text.text[self.correct_index]:
+            self.cur_text.add_letter(event.unicode)
+            self.correct_index += 1
+            diff = (datetime.now() - self.time).total_seconds()
+            self.cur_stats.add_correct(diff)
+            self.all_time_stats.add_correct(diff)
+            self.time = datetime.now()
+        else:
+            self.cur_stats.add_error()
+            self.all_time_stats.add_error()
 
 
 class Button:
@@ -39,9 +72,7 @@ class Button:
                               my_space.TEXT_MARGIN,
                               self.coordinate[1] + self.button_height // 2 - self.button_height // 2 -
                               my_space.TEXT_MARGIN)
-        print(self.text_position)
-        print(self.draw)
-        print(self.rect)
+
         self.default_color = my_space.LIGHT_GRAY
 
     def draw_button(self, color: Tuple[int, int, int] = None) -> None:
@@ -63,11 +94,3 @@ class Button:
         coord = pygame.mouse.get_pos()
         if self.rect.collidepoint(coord):
             self.draw_button(my_space.GREY)
-
-
-def display_text(text: str, offset: Tuple[int, int], text_color: Tuple[int, int, int]):
-    """Отображает текст на экране."""
-    text_surface = my_space.FONT.render(text, True, text_color)
-    text_rect = text_surface.get_rect()
-    text_rect.topleft = offset
-    my_space.screen.blit(text_surface, text_rect)

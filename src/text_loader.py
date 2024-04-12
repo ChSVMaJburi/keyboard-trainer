@@ -13,5 +13,6 @@ class TextLoader:
     def load_random_text(self) -> str:
         """Загружает рандомный текст из файла и возвращает его в виде строки."""
         index = random.randint(1, self.count_of_texts)
-        with open(f"../{self.texts_path}/{index}.txt", encoding="UTF-8") as text:
+        index = 8
+        with open(f"{self.texts_path}/{index}.txt", encoding="UTF-8") as text:
             return text.read()
