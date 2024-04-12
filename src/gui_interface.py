@@ -41,7 +41,8 @@ class TypingTrainerGUI:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-        if event.type != pygame.KEYDOWN or event.key in (pygame.K_BACKSPACE, pygame.K_LSHIFT, pygame.K_RSHIFT):
+        if event.type != pygame.KEYDOWN or event.key in (
+                pygame.K_BACKSPACE, pygame.K_LSHIFT, pygame.K_RSHIFT, pygame.K_LALT, pygame.K_RALT):
             return False
         if event.unicode == self.need_text.text[self.correct_index]:
             self.cur_text.add_letter(event.unicode)
