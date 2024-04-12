@@ -1,7 +1,7 @@
 """Класс с константными значениями"""
 import pygame
 
-DISPLAY_SIZE = (1000, 600)
+DISPLAY_SIZE = (1024, 768)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 BLUE = (0, 180, 180)
@@ -19,3 +19,5 @@ screen: pygame.surface.Surface
 FONT_SIZE = 50
 GAME_OVER: pygame.font.Font
 FONT: pygame.font.Font
+
+SECS_PER_MINUTE = 60

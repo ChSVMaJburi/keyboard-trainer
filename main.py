@@ -15,14 +15,18 @@ def init_pygame():
     pygame.display.set_caption("Typing Trainer")
     pygame.display.set_icon(pygame.image.load('images/icon.png'))
 
+
 def display_the_start_screen() -> None:
     """"Создает кнопку "START GAME", рисует ее на экране и обрабатывает события мыши"""
     started = False
-    start_button = Button((300, 200), "START TYPING")
+    start_button = Button((300, 300), "START TYPING")
+    keyboard_image = pygame.image.load('images/keyboard_image.png')
+    # keyboard_image = pygame.transform.scale(keyboard_image, (300, 200))
     while not started:
         display_text("Check your typing skills", (220, 70), my_space.WHITE)
         start_button.draw_button()
         start_button.change_color_on_hover()
+        my_space.screen.blit(keyboard_image, (370, 400))
         pygame.display.update()
         mouse_position = pygame.mouse.get_pos()
         for event in pygame.event.get():
@@ -33,13 +37,13 @@ def display_the_start_screen() -> None:
                   start_button.rect.collidepoint(mouse_position)):
                 started = True
                 my_space.screen.fill(my_space.GREY, start_button.rect)
+                my_space.screen.fill(my_space.GREY, pygame.Rect(370, 400, 370, 300))
         pygame.display.update()
 
 
 if __name__ == "__main__":
     init_pygame()
     pygame.font.init()
-    print(pygame.font.get_fonts())
     display_the_start_screen()
     while True:
         for event in pygame.event.get():
