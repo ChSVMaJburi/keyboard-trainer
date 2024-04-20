@@ -1,6 +1,4 @@
 """Класс с константными значениями"""
-import pygame
-
 DISPLAY_SIZE = (1024, 768)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -16,7 +14,7 @@ GREEN = (0, 255, 0)
 
 RECTANGLE = (550, 332, 154, 72)
 
-screen: pygame.surface.Surface
+screen: None
 FONT_SIZE = 50
 FONT = 50
 

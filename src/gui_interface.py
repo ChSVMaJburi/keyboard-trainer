@@ -1,14 +1,14 @@
 """Реализация класса для отображения графического интерфейса"""
 import sys
-from typing import Tuple, List
+from typing import Tuple
 
 import pygame
-import src.global_variables as my_space
-from src.statistics import TypingStatistics
-from src.storage_manager import StorageManager
-from src.text_manager import TextManager
-from src.text_loader import TextLoader
-from datetime import time, datetime
+from . import global_variables as my_space
+from .statistics import TypingStatistics
+from .storage_manager import StorageManager
+from .text_manager import TextManager
+from .text_loader import TextLoader
+from datetime import datetime
 
 
 class TypingTrainerGUI:

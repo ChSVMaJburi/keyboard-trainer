@@ -1,8 +1,10 @@
-"""Модуль с классом хранящим статистику"""
-import src.global_variables as my_space
+"""Модуль с реализацией класса TypingStatistics"""
+from . import global_variables as my_space
 
 
 class TypingStatistics:
+    """Класс для управления статистикой печати"""
+
     def __init__(self, time: float = 0, correct: int = 0, errors: int = 0):
         self.time, self.correct, self.errors = time, correct, errors
 

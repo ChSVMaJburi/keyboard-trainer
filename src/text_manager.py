@@ -1,7 +1,7 @@
 """Реализован класс Text"""
 import sys
 from typing import Tuple
-import src.global_variables as my_space
+from . import global_variables as my_space
 
 import pygame
 

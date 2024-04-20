@@ -32,12 +32,12 @@ def display_the_start_screen() -> None:
         my_space.screen.blit(keyboard_image, (370, 400))
         pygame.display.update()
         mouse_position = pygame.mouse.get_pos()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+        for cur_event in pygame.event.get():
+            if cur_event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            elif (event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN) or (
-                    event.type == pygame.MOUSEBUTTONDOWN and start_button.rect.collidepoint(mouse_position)):
+            elif (cur_event.type == pygame.KEYDOWN and cur_event.key == pygame.K_RETURN) or (
+                    cur_event.type == pygame.MOUSEBUTTONDOWN and start_button.rect.collidepoint(mouse_position)):
                 started = True
                 my_space.screen.fill(my_space.GREY, start_button.rect)
                 my_space.screen.fill(my_space.GREY, pygame.Rect(370, 400, 370, 300))
@@ -65,8 +65,8 @@ if __name__ == "__main__":
                 my_space.screen.fill(my_space.GREY, pygame.Rect(220, 70, 600, 170))
                 TextManager("Game Over", my_space.FONT_SIZE * 2, my_space.YELLOW).print_to_gui((200, 50))
                 StorageManager("statistic.txt").save_statistics(aminov.all_time_stats.time,
-                                                                 aminov.all_time_stats.correct,
-                                                                 aminov.all_time_stats.errors)
+                                                                aminov.all_time_stats.correct,
+                                                                aminov.all_time_stats.errors)
                 game_over = True
                 break
         pygame.display.update()
