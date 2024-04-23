@@ -1,0 +1,21 @@
+"""Класс с константными значениями"""
+DISPLAY_SIZE = (1024, 768)
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+BLUE = (0, 180, 180)
+RED = (255, 0, 0)
+GREY = (80, 80, 80)
+BLOCK_SIZE = 50
+LIGHT_GRAY = (192, 192, 192)
+BUTTON_MARGIN = -10
+TEXT_MARGIN = 0
+YELLOW = (255, 255, 100)
+GREEN = (0, 255, 0)
+
+RECTANGLE = (550, 332, 154, 72)
+
+screen: None
+FONT_SIZE = 50
+FONT = 50
+
+SECS_PER_MINUTE = 60
