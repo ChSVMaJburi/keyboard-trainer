@@ -20,7 +20,7 @@
 
 ---
 
-    git@github.com:ChSVMaJburi/keyboard-trainer.git
+    git clone git@github.com:ChSVMaJburi/keyboard-trainer.git
 
 Установите нужные библиотеки
 
